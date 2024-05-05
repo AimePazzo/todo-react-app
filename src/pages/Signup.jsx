@@ -3,9 +3,10 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { register } from "../features/auth/authSlice";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const validationSchema = yup.object({
   username: yup.string().required("Username is required"),
@@ -73,9 +74,9 @@ const Signup = () => {
         />
         {formik.touched.password && formik.errors.password ? (
           <div className="error">{formik.errors.password}</div>
-        ) : null}
-        <button type="submit" className="button">SignUp</button>
-        {isLoading && <div>Loading...</div>}
+        ) : null}        
+        
+        {isLoading ? <button type="submit" className="button"><Spinner animation="border" variant="warning" /></button> : <button type="submit" className="button">SignUp</button> }
       </form>
     </div>
   );
