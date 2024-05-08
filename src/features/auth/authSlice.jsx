@@ -52,19 +52,16 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         if (state.isSuccess) {
-          const successMessage = (state.message =
-            action.payload.message);
+          const successMessage = (state.message = action.payload.message);
           toast.success(successMessage);
         }
-        localStorage.setItem('token', action.payload.token);
-    
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         if (state.isError) {
-          const errorMessage = (state.message =
-            action.payload.response.data.message);
+          const errorMessage = (state.message = action.payload.message);
           toast.error(errorMessage);
         }
       })
@@ -75,18 +72,13 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.newUser = action.payload;
-        if (state.isSuccess) {
-          const successMessage = (state.message =
-            action.payload.response.data.message);
-          toast.success(successMessage);
-        }
+        state.message = action.payload.message;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         if (state.isSuccess) {
-          const errorMessage = (state.message =
-            action.payload.response.data.message);
+          const errorMessage = (state.message = action.payload.message);
           toast.error(errorMessage);
         }
       });

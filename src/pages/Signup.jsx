@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../features/auth/authSlice";
 import Spinner from 'react-bootstrap/Spinner';
+import { toast } from "react-toastify";
 
 
 const validationSchema = yup.object({
@@ -32,9 +33,15 @@ const Signup = () => {
   const { user,isError, isSuccess,isLoading,message } = signUser;
   useEffect(() => {
     if (isSuccess) {
-      navigate("/login");
+      toast.success(message)
+      setTimeout(() =>{
+          navigate("/");
+        }, 3000);
     }
-  }, [user, isError, isLoading, isSuccess, navigate]);
+    else if(isError){
+      toast.error(message)
+    }
+  }, [user, isError, isLoading, isSuccess,message, navigate]);
   return (
     <div className="container">
       <form className="form-container" onSubmit={formik.handleSubmit}>

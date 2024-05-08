@@ -1,1 +1,1 @@
-export const baseUrl = 'https://todo-typescript-app.onrender.com/api';
+export const baseUrl = 'http://localhost:8000/api';
