@@ -77,10 +77,7 @@ export const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        if (state.isSuccess) {
-          const errorMessage = (state.message = action.payload.message);
-          toast.error(errorMessage);
-        }
+        state.message = action.payload.message
       });
   },
 });
